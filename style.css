@@ -1,0 +1,452 @@
+/* ==========================================================================
+   SISTEMA DE MANTENIMIENTO AUTOCAT TALLER
+   PALETA DE COLORES: CAFÉ, NEGRO Y BEIGE (SIN TONOS AZULES)
+   ========================================================================== */
+
+:root {
+    --color-cafe-oscuro: #2e1a0f;    /* Café oscuro para navbar y footer */
+    --color-cafe-medio: #4a2c1a;     /* Café chocolate para títulos, botones y acentos */
+    --color-cafe-claro: #7c4d30;     /* Café canela para detalles y bordes */
+    --color-negro: #1a1a1a;          /* Negro suave para textos principales */
+    --color-beige-oscuro: #d7c4b7;   /* Beige para bordes y acentos */
+    --color-beige-medio: #ede0d4;    /* Beige medio para tarjetas y cajas */
+    --color-beige-claro: #f7f2eb;    /* Beige claro para fondo principal */
+    --color-dorado: #d48806;         /* Acento ámbar/dorado cálido */
+    --color-blanco: #ffffff;
+    --font-principal: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    font-family: var(--font-principal);
+    background-color: var(--color-beige-claro);
+    color: var(--color-negro);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/* NAVBAR EN CAFÉ Y BEIGE */
+.navbar-custom {
+    background-color: var(--color-cafe-oscuro);
+    border-bottom: 3px solid var(--color-cafe-claro);
+    padding: 0.8rem 1rem;
+}
+
+.navbar-custom .navbar-brand {
+    color: var(--color-beige-medio) !important;
+    font-weight: 700;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar-custom .navbar-brand i {
+    color: #e6b88a;
+}
+
+.navbar-custom .nav-link {
+    color: #dfd3c3 !important;
+    font-weight: 500;
+    padding: 0.5rem 0.9rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link.active {
+    color: #ffffff !important;
+    background-color: var(--color-cafe-medio);
+}
+
+.navbar-custom .user-pill {
+    background-color: rgba(255, 255, 255, 0.12);
+    border: 1px solid var(--color-cafe-claro);
+    color: var(--color-beige-medio);
+    padding: 0.35rem 0.85rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+}
+
+/* HERO BANNER */
+.hero-banner {
+    background: linear-gradient(135deg, var(--color-cafe-oscuro) 0%, #1e130a 100%);
+    color: var(--color-blanco);
+    padding: 3.5rem 1rem;
+    border-bottom: 4px solid var(--color-cafe-claro);
+}
+
+.hero-banner h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--color-beige-medio);
+}
+
+.hero-banner p.lead {
+    color: #e0d5c1;
+    font-size: 1.1rem;
+}
+
+/* CARRUSEL CON ILUSTRACIONES VECTORIALES Y FOTOS */
+.carousel-custom {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid var(--color-beige-oscuro);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.carousel-custom .carousel-item {
+    height: 330px;
+    background-color: #1a0e07;
+    position: relative;
+}
+
+.carousel-custom .carousel-img,
+.carousel-custom .carousel-svg {
+    height: 330px;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.carousel-custom .carousel-caption {
+    background: rgba(30, 16, 9, 0.88);
+    backdrop-filter: blur(5px);
+    border-radius: 8px;
+    padding: 0.75rem 1.25rem;
+    bottom: 1.25rem;
+    left: 8%;
+    right: 8%;
+    border: 1px solid rgba(230, 184, 138, 0.4);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+}
+
+.carousel-custom .carousel-caption h5 {
+    color: #f7f2eb;
+}
+
+.carousel-custom .carousel-caption p {
+    color: #dfd3c3;
+}
+
+/* TARJETAS Y CONTENEDORES */
+.card-custom {
+    background: var(--color-blanco);
+    border: 1px solid var(--color-beige-oscuro);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(46, 26, 15, 0.06);
+}
+
+.card-header-cafe {
+    background-color: var(--color-cafe-oscuro);
+    color: var(--color-beige-medio);
+    font-weight: 600;
+    padding: 0.85rem 1.25rem;
+    border-top-left-radius: 9px !important;
+    border-top-right-radius: 9px !important;
+}
+
+.demo-user-box {
+    background: var(--color-beige-medio);
+    border: 1px solid var(--color-beige-oscuro);
+    border-radius: 10px;
+    padding: 1.25rem;
+}
+
+.demo-account-chip {
+    cursor: pointer;
+    background: #ffffff;
+    border: 1px solid var(--color-cafe-claro);
+    border-radius: 8px;
+    padding: 0.65rem 0.85rem;
+    margin-bottom: 0.6rem;
+    transition: all 0.2s;
+}
+
+.demo-account-chip:hover {
+    background: #fdfaf6;
+    border-color: var(--color-cafe-medio);
+    transform: translateY(-1px);
+}
+
+/* BOTONES EN CAFÉ Y BEIGE CON EFECTOS TÁCTILES AL APLASTAR */
+.btn-cafe {
+    background-color: var(--color-cafe-medio);
+    border: 1px solid var(--color-cafe-medio);
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.55rem 1.3rem;
+    border-radius: 6px;
+    transition: all 0.15s ease-in-out;
+    cursor: pointer;
+}
+
+.btn-cafe:hover {
+    background-color: var(--color-cafe-oscuro);
+    border-color: var(--color-cafe-oscuro);
+    color: var(--color-beige-medio);
+}
+
+.btn-cafe:active, .btn-cafe:focus:active {
+    background-color: #1a0e07 !important;
+    border-color: var(--color-dorado) !important;
+    color: #ffffff !important;
+    transform: scale(0.96);
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.45) !important;
+}
+
+.btn-beige {
+    background-color: var(--color-beige-medio);
+    border: 1px solid var(--color-cafe-claro);
+    color: var(--color-cafe-oscuro);
+    font-weight: 600;
+    padding: 0.55rem 1.3rem;
+    border-radius: 6px;
+    transition: all 0.15s ease-in-out;
+    cursor: pointer;
+}
+
+.btn-beige:hover {
+    background-color: var(--color-beige-oscuro);
+    color: var(--color-cafe-oscuro);
+}
+
+.btn-beige:active, .btn-beige:focus:active {
+    background-color: var(--color-cafe-claro) !important;
+    border-color: var(--color-cafe-medio) !important;
+    color: #ffffff !important;
+    transform: scale(0.96);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.3) !important;
+}
+
+.btn-outline-secondary {
+    border-color: var(--color-beige-oscuro);
+    color: var(--color-cafe-medio);
+    transition: all 0.15s ease-in-out;
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--color-beige-medio);
+    border-color: var(--color-cafe-claro);
+    color: var(--color-cafe-oscuro);
+}
+
+/* BOTONES LIMPIAR Y REGISTRAR CON EFECTO AL APLASTAR */
+.btn-limpiar-form {
+    background-color: var(--color-cafe-claro) !important;
+    border: 2px solid var(--color-cafe-medio) !important;
+    color: #ffffff !important;
+    font-weight: 700;
+    padding: 0.55rem 1.4rem;
+    border-radius: 6px;
+    transition: all 0.15s ease-in-out;
+}
+
+.btn-limpiar-form:hover {
+    background-color: var(--color-cafe-medio) !important;
+    color: var(--color-beige-medio) !important;
+    border-color: var(--color-cafe-oscuro) !important;
+}
+
+.btn-limpiar-form:active {
+    background-color: #2e1a0f !important;
+    color: #ffffff !important;
+    border-color: var(--color-dorado) !important;
+    transform: scale(0.95);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.4) !important;
+}
+
+.btn-registrar-form {
+    background-color: var(--color-cafe-medio) !important;
+    border: 2px solid var(--color-cafe-oscuro) !important;
+    color: #ffffff !important;
+    font-weight: 700;
+    padding: 0.55rem 1.6rem;
+    border-radius: 6px;
+    transition: all 0.15s ease-in-out;
+}
+
+.btn-registrar-form:hover {
+    background-color: var(--color-cafe-oscuro) !important;
+    border-color: #1a0e07 !important;
+    color: var(--color-beige-medio) !important;
+}
+
+.btn-registrar-form:active {
+    background-color: #1a0e07 !important;
+    border-color: var(--color-dorado) !important;
+    color: var(--color-beige-claro) !important;
+    transform: scale(0.95);
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* BADGES DE ESTADO */
+.badge-estado {
+    padding: 0.4em 0.8em;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 20px;
+    display: inline-block;
+    text-transform: capitalize;
+}
+
+.badge-estado.pendiente { background-color: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+.badge-estado.en-revision, .badge-estado.revision { background-color: var(--color-beige-medio); color: var(--color-cafe-oscuro); border: 1px solid var(--color-beige-oscuro); }
+.badge-estado.en-proceso, .badge-estado.proceso { background-color: #fff1d6; color: var(--color-cafe-oscuro); border: 1px solid #ebd2a4; }
+.badge-estado.finalizado { background-color: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+.badge-estado.cancelado { background-color: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+
+/* FORMULARIOS Y CERO AZUL */
+.form-label {
+    font-weight: 600;
+    color: var(--color-negro);
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+
+.form-control, .form-select {
+    border: 1px solid var(--color-beige-oscuro);
+    border-radius: 6px;
+    padding: 0.55rem 0.8rem;
+    background-color: #ffffff;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--color-cafe-medio) !important;
+    box-shadow: 0 0 0 3px rgba(74, 44, 26, 0.18) !important;
+    outline: none !important;
+}
+
+/* ELIMINAR AZUL DE RADIOS Y CHECKBOXES */
+.form-check-input {
+    border-color: var(--color-cafe-claro) !important;
+}
+
+.form-check-input:checked {
+    background-color: var(--color-cafe-medio) !important;
+    border-color: var(--color-cafe-medio) !important;
+}
+
+.form-check-input:focus {
+    border-color: var(--color-cafe-medio) !important;
+    box-shadow: 0 0 0 0.2rem rgba(74, 44, 26, 0.2) !important;
+}
+
+/* TÍTULOS DE SECCIÓN - CAFÉ */
+.titulo-seccion-cafe {
+    color: var(--color-cafe-medio) !important;
+    border-bottom: 2px solid var(--color-beige-oscuro) !important;
+    padding-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+/* ENLACES - CAFÉ */
+a {
+    color: var(--color-cafe-medio);
+}
+a:hover {
+    color: var(--color-cafe-oscuro);
+}
+
+/* FOOTER */
+.footer-custom {
+    background-color: var(--color-cafe-oscuro);
+    color: var(--color-beige-medio);
+    padding: 1.75rem 1rem 1rem;
+    margin-top: 2.5rem;
+    font-size: 0.88rem;
+    border-top: 3px solid var(--color-cafe-claro);
+}
+
+.stat-card {
+    background: #ffffff;
+    border: 1px solid var(--color-beige-oscuro);
+    border-left: 4px solid var(--color-cafe-medio);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+}
+
+/* TRACKER VISUAL DE ETAPAS DE MANTENIMIENTO */
+.etapas-tracker {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: 1.2rem 0 0.8rem;
+}
+
+.etapas-tracker::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 10%;
+    right: 10%;
+    height: 4px;
+    background: var(--color-beige-oscuro);
+    z-index: 1;
+}
+
+.etapas-progreso-barra {
+    position: absolute;
+    top: 15px;
+    left: 10%;
+    height: 4px;
+    background: var(--color-dorado);
+    z-index: 2;
+    transition: width 0.4s ease;
+}
+
+.etapa-item {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    width: 25%;
+}
+
+.etapa-circulo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 3px solid var(--color-beige-oscuro);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-negro);
+    transition: all 0.3s;
+}
+
+.etapa-item.activa .etapa-circulo {
+    background: var(--color-cafe-medio);
+    border-color: var(--color-dorado);
+    color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(212, 136, 6, 0.25);
+}
+
+.etapa-item.completada .etapa-circulo {
+    background: var(--color-dorado);
+    border-color: var(--color-dorado);
+    color: #ffffff;
+}
+
+.etapa-titulo {
+    font-size: 0.75rem;
+    margin-top: 0.35rem;
+    font-weight: 600;
+    color: var(--color-negro);
+}
+
+.card-solicitud-cliente {
+    background: #ffffff;
+    border: 1px solid var(--color-beige-oscuro);
+    border-radius: 10px;
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 2px 6px rgba(46, 26, 15, 0.05);
+    border-left: 5px solid var(--color-cafe-medio);
+}

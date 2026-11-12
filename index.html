@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoCat Taller | Mantenimiento Automotriz</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <div class="container-fluid px-lg-4">
+                <a class="navbar-brand" href="index.html">
+                    <i class="fa-solid fa-car-side"></i>
+                    <i class="fa-solid fa-cat" style="font-size: 0.9em; margin-left: -5px; color: #e6b88a; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.6));"></i>
+                    <span>AutoCat Taller</span>
+                </a>
+                <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                    <i class="fa-solid fa-bars text-white"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navMenu">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3">
+                        <li class="nav-item" id="nav-inicio">
+                            <a class="nav-link active" href="index.html"><i class="fa-solid fa-house me-1"></i> Inicio</a>
+                        </li>
+                        <li class="nav-item" id="nav-admin" style="display:none;">
+                            <a class="nav-link" href="admin.html" onclick="verificarAccesoAdminNavbar(event)"><i class="fa-solid fa-shield-halved me-1"></i> Administración</a>
+                        </li>
+                    </ul>
+                    <div id="navbar-auth-section" class="d-flex align-items-center"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HERO BANNER -->
+        <section class="hero-banner">
+            <div class="container">
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-6">
+                        <span class="badge bg-warning text-dark px-3 py-2 mb-2 fw-bold">
+                            Taller Mecánico Especializado
+                        </span>
+                        <h1 class="mb-3">Mantenimiento Automotriz de Confianza</h1>
+                        <p class="lead mb-4">
+                            Registra tu vehículo, agenda tu cita de mantenimiento y consulta el estado de reparación en tiempo real desde tu cuenta personal.
+                        </p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="cuenta.html" class="btn btn-beige btn-lg">
+                                <i class="fa-solid fa-right-to-bracket me-2"></i> Iniciar Sesión
+                            </a>
+                            <a href="#seccion-servicios" class="btn btn-cafe btn-lg">
+                                <i class="fa-solid fa-screwdriver-wrench me-2"></i> Nuestros Servicios
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- CARRUSEL CON FOTOS / ILUSTRACIONES TÉCNICAS GARANTIZADAS -->
+                    <div class="col-lg-6">
+                        <div id="carouselServicios" class="carousel slide carousel-custom" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselServicios" data-bs-slide-to="0" class="active"></button>
+                                <button type="button" data-bs-target="#carouselServicios" data-bs-slide-to="1"></button>
+                                <button type="button" data-bs-target="#carouselServicios" data-bs-slide-to="2"></button>
+                                <button type="button" data-bs-target="#carouselServicios" data-bs-slide-to="3"></button>
+                            </div>
+                            <div class="carousel-inner">
+
+                                <!-- FOTO 1: DIAGNÓSTICO COMPUTARIZADO -->
+                                <div class="carousel-item active">
+                                    <svg class="d-block w-100 carousel-svg" viewBox="0 0 1000 550" xmlns="http://www.w3.org/2000/svg">
+                                        <defs>
+                                            <linearGradient id="bgDiag" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" stop-color="#190e06" />
+                                                <stop offset="50%" stop-color="#2d170a" />
+                                                <stop offset="100%" stop-color="#4a2c1a" />
+                                            </linearGradient>
+                                            <linearGradient id="goldGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                <stop offset="0%" stop-color="#d48806" />
+                                                <stop offset="100%" stop-color="#ffd591" />
+                                            </linearGradient>
+                                        </defs>
+                                        <rect width="1000" height="550" fill="url(#bgDiag)"/>
+                                        <!-- Gridlines de fondo técnico -->
+                                        <g stroke="rgba(255,255,255,0.06)" stroke-width="1">
+                                            <line x1="100" y1="0" x2="100" y2="550"/><line x1="250" y1="0" x2="250" y2="550"/>
+                                            <line x1="400" y1="0" x2="400" y2="550"/><line x1="550" y1="0" x2="550" y2="550"/>
+                                            <line x1="700" y1="0" x2="700" y2="550"/><line x1="850" y1="0" x2="850" y2="550"/>
+                                            <line x1="0" y1="100" x2="1000" y2="100"/><line x1="0" y1="220" x2="1000" y2="220"/>
+                                            <line x1="0" y1="340" x2="1000" y2="340"/><line x1="0" y1="460" x2="1000" y2="460"/>
+                                        </g>
+                                        <!-- Silueta Automotriz y Scanner -->
+                                        <g transform="translate(180, 70)">
+                                            <!-- Chasis estilizado del carro -->
+                                            <path d="M 80 230 C 120 230 140 160 210 130 C 270 100 370 100 450 130 C 510 150 560 200 600 230 L 630 250 C 640 260 640 280 620 280 L 50 280 C 30 280 30 260 50 240 Z" fill="none" stroke="url(#goldGlow)" stroke-width="4" filter="drop-shadow(0 0 10px rgba(212,136,6,0.5))"/>
+                                            <!-- Ruedas -->
+                                            <circle cx="160" cy="280" r="45" fill="#120803" stroke="#ffd591" stroke-width="4"/>
+                                            <circle cx="160" cy="280" r="20" fill="#2e1a0f" stroke="#d48806" stroke-width="2"/>
+                                            <circle cx="510" cy="280" r="45" fill="#120803" stroke="#ffd591" stroke-width="4"/>
+                                            <circle cx="510" cy="280" r="20" fill="#2e1a0f" stroke="#d48806" stroke-width="2"/>
+                                            <!-- Señales de Diagnóstico / Scanner Waveform -->
+                                            <path d="M 80 170 L 160 170 L 180 130 L 200 210 L 230 150 L 260 170 L 380 170 L 400 120 L 420 215 L 440 160 L 580 160" fill="none" stroke="#52c41a" stroke-width="3" stroke-linecap="round"/>
+                                            <!-- Escáner OBD-II HUD -->
+                                            <rect x="250" y="30" width="180" height="70" rx="8" fill="rgba(20,10,5,0.85)" stroke="#d48806" stroke-width="2"/>
+                                            <text x="340" y="55" fill="#52c41a" font-family="monospace" font-size="14" font-weight="bold" text-anchor="middle">OBD-II: CONECTADO</text>
+                                            <text x="340" y="78" fill="#ffd591" font-family="monospace" font-size="12" text-anchor="middle">SENSORES 100% OK</text>
+                                            <!-- Silueta de gato AutoCat disimulada -->
+                                            <path d="M 330 115 C 325 105 315 95 320 90 C 325 85 330 95 335 102 C 342 98 350 98 357 102 C 362 95 367 85 372 90 C 377 95 367 105 362 115 C 355 122 339 122 330 115 Z" fill="#e6b88a" opacity="0.8"/>
+                                        </g>
+                                    </svg>
+                                    <div class="carousel-caption">
+                                        <h5 class="fw-bold"><i class="fa-solid fa-laptop-code text-warning me-1"></i> Diagnóstico Computarizado</h5>
+                                        <p class="small mb-0">Escaneo multimarca OBD-II de sensores y módulos de inyección.</p>
+                                    </div>
+                                </div>
+
+                                <!-- FOTO 2: MANTENIMIENTO PREVENTIVO -->
+                                <div class="carousel-item">
+                                    <svg class="d-block w-100 carousel-svg" viewBox="0 0 1000 550" xmlns="http://www.w3.org/2000/svg">
+                                        <defs>
+                                            <linearGradient id="bgPrev" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" stop-color="#140a04" />
+                                                <stop offset="50%" stop-color="#33190b" />
+                                                <stop offset="100%" stop-color="#542e18" />
+                                            </linearGradient>
+                                        </defs>
+                                        <rect width="1000" height="550" fill="url(#bgPrev)"/>
+                                        <!-- Líneas y engranes de taller -->
+                                        <g stroke="rgba(230,184,138,0.12)" stroke-width="1.5">
+                                            <circle cx="200" cy="200" r="90" fill="none" stroke-dasharray="8 6"/>
+                                            <circle cx="800" cy="180" r="110" fill="none" stroke-dasharray="10 8"/>
+                                        </g>
+                                        <!-- Ilustración Central de Aceite y Motor -->
+                                        <g transform="translate(320, 60)">
+                                            <!-- Aceitera Dorada Especial -->
+                                            <path d="M 60 210 L 280 210 C 300 210 320 180 300 150 L 260 120 L 260 70 L 210 70 L 210 110 L 120 130 C 80 140 50 170 60 210 Z" fill="#d48806" opacity="0.9"/>
+                                            <path d="M 280 140 L 350 80 C 360 70 380 70 390 80 C 400 90 390 105 370 120 L 300 165 Z" fill="#ffd591"/>
+                                            <!-- Gota de aceite lubricante premium -->
+                                            <path d="M 390 130 C 390 130 420 170 420 190 C 420 205 405 220 390 220 C 375 220 360 205 360 190 C 360 170 390 130 390 130 Z" fill="#faad14" filter="drop-shadow(0 0 12px rgba(250,173,20,0.8))"/>
+                                            <!-- Llave mecánica y filtro -->
+                                            <rect x="70" y="235" width="220" height="35" rx="6" fill="#ede0d4" opacity="0.9"/>
+                                            <circle cx="70" cy="252" r="30" fill="none" stroke="#ede0d4" stroke-width="12"/>
+                                            <!-- Marcador de calidad 100% -->
+                                            <rect x="110" y="285" width="140" height="36" rx="18" fill="#2e1a0f" stroke="#ffd591" stroke-width="2"/>
+                                            <text x="180" y="308" fill="#ffffff" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">LUBRICACIÓN 100%</text>
+                                        </g>
+                                    </svg>
+                                    <div class="carousel-caption">
+                                        <h5 class="fw-bold"><i class="fa-solid fa-oil-can text-warning me-1"></i> Mantenimiento Preventivo</h5>
+                                        <p class="small mb-0">Cambio de lubricantes, filtros y revisión de 20 puntos.</p>
+                                    </div>
+                                </div>
+
+                                <!-- FOTO 3: FRENOS Y SEGURIDAD -->
+                                <div class="carousel-item">
+                                    <svg class="d-block w-100 carousel-svg" viewBox="0 0 1000 550" xmlns="http://www.w3.org/2000/svg">
+                                        <defs>
+                                            <linearGradient id="bgFrenos" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" stop-color="#190e06" />
+                                                <stop offset="50%" stop-color="#3d1d0c" />
+                                                <stop offset="100%" stop-color="#592b10" />
+                                            </linearGradient>
+                                        </defs>
+                                        <rect width="1000" height="550" fill="url(#bgFrenos)"/>
+                                        <g transform="translate(350, 60)">
+                                            <!-- Disco de Freno Ventilado -->
+                                            <circle cx="150" cy="180" r="140" fill="#26150a" stroke="#d7c4b7" stroke-width="6"/>
+                                            <circle cx="150" cy="180" r="105" fill="#1c0f07" stroke="#7c4d30" stroke-width="3"/>
+                                            <!-- Perforaciones de ventilación deportiva -->
+                                            <g fill="#d7c4b7">
+                                                <circle cx="150" cy="95" r="5"/><circle cx="150" cy="265" r="5"/>
+                                                <circle cx="65" cy="180" r="5"/><circle cx="235" cy="180" r="5"/>
+                                                <circle cx="90" cy="120" r="5"/><circle cx="210" cy="240" r="5"/>
+                                                <circle cx="90" cy="240" r="5"/><circle cx="210" cy="120" r="5"/>
+                                                <circle cx="115" cy="100" r="4"/><circle cx="185" cy="260" r="4"/>
+                                                <circle cx="115" cy="260" r="4"/><circle cx="185" cy="100" r="4"/>
+                                            </g>
+                                            <!-- Caliper / Mordaza de freno deportiva en Rojo Ámbar -->
+                                            <path d="M 180 80 C 270 90 310 160 300 240 L 250 230 C 260 170 230 120 170 110 Z" fill="#c0392b" stroke="#ffd591" stroke-width="3"/>
+                                            <!-- Centro del buje -->
+                                            <circle cx="150" cy="180" r="45" fill="#4a2c1a" stroke="#ffd591" stroke-width="3"/>
+                                            <!-- Escudo de Seguridad -->
+                                            <path d="M 330 250 L 370 230 L 410 250 L 410 290 C 410 320 370 340 370 340 C 370 340 330 320 330 290 Z" fill="#d48806" stroke="#ffffff" stroke-width="2"/>
+                                            <text x="370" y="295" fill="#ffffff" font-family="sans-serif" font-size="20" font-weight="bold" text-anchor="middle">ABS</text>
+                                        </g>
+                                    </svg>
+                                    <div class="carousel-caption">
+                                        <h5 class="fw-bold"><i class="fa-solid fa-circle-notch text-warning me-1"></i> Sistema de Frenos</h5>
+                                        <p class="small mb-0">Cambio de pastillas, rectificación y purgado de líquido.</p>
+                                    </div>
+                                </div>
+
+                                <!-- FOTO 4: ALINEACIÓN Y BALANCEO -->
+                                <div class="carousel-item">
+                                    <svg class="d-block w-100 carousel-svg" viewBox="0 0 1000 550" xmlns="http://www.w3.org/2000/svg">
+                                        <defs>
+                                            <linearGradient id="bgAlin" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" stop-color="#120803" />
+                                                <stop offset="50%" stop-color="#2b1509" />
+                                                <stop offset="100%" stop-color="#4a230d" />
+                                            </linearGradient>
+                                        </defs>
+                                        <rect width="1000" height="550" fill="url(#bgAlin)"/>
+                                        <g transform="translate(250, 50)">
+                                            <!-- Rueda en vista 3D / Alineación láser -->
+                                            <ellipse cx="250" cy="180" rx="110" ry="145" fill="#180c05" stroke="#d7c4b7" stroke-width="8"/>
+                                            <ellipse cx="250" cy="180" rx="75" ry="105" fill="#361a0b" stroke="#d48806" stroke-width="4"/>
+                                            <ellipse cx="250" cy="180" rx="30" ry="40" fill="#201007" stroke="#ffd591" stroke-width="3"/>
+                                            <!-- Líneas de Rayo Láser de Alineación -->
+                                            <line x1="20" y1="180" x2="480" y2="180" stroke="#ff4d4f" stroke-width="3" stroke-dasharray="6 4"/>
+                                            <line x1="250" y1="10" x2="250" y2="350" stroke="#52c41a" stroke-width="3" stroke-dasharray="6 4"/>
+                                            <!-- Ángulos de Grados 0.0° -->
+                                            <rect x="70" y="30" width="130" height="40" rx="6" fill="#2e1a0f" stroke="#52c41a" stroke-width="2"/>
+                                            <text x="135" y="56" fill="#52c41a" font-family="monospace" font-size="16" font-weight="bold" text-anchor="middle">CAMBER: 0.0°</text>
+                                            <rect x="300" y="30" width="130" height="40" rx="6" fill="#2e1a0f" stroke="#52c41a" stroke-width="2"/>
+                                            <text x="365" y="56" fill="#52c41a" font-family="monospace" font-size="16" font-weight="bold" text-anchor="middle">TOE: +0.02°</text>
+                                        </g>
+                                    </svg>
+                                    <div class="carousel-caption">
+                                        <h5 class="fw-bold"><i class="fa-solid fa-rotate text-warning me-1"></i> Alineación y Balanceo</h5>
+                                        <p class="small mb-0">Corrección de ángulos de dirección y balanceo de ruedas.</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselServicios" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon"></span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselServicios" data-bs-slide="next">
+                                <span class="carousel-control-next-icon"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: COMPROMISO Y CALIDAD -->
+        <section class="py-5 bg-white border-bottom">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 text-center">
+                        <h2 class="fw-bold mb-3" style="color: var(--color-cafe-medio);">
+                            Compromiso, Calidad y Transparencia
+                        </h2>
+                        <p class="text-secondary mx-auto mb-4" style="max-width: 750px;">
+                            En <strong>AutoCat Taller</strong> permitimos que cada cliente registre solicitudes en línea, consulte el estado en tiempo real de su orden y reciba reportes técnicos transparentes.
+                        </p>
+                        <div class="row g-3 justify-content-center mt-1 text-start">
+                            <div class="col-md-5">
+                                <div class="d-flex align-items-start gap-3 p-3 rounded" style="background-color: var(--color-beige-claro); border: 1px solid var(--color-beige-oscuro);">
+                                    <i class="fa-solid fa-circle-check text-success fs-4 mt-1"></i>
+                                    <div>
+                                        <h6 class="fw-bold mb-1 text-dark">Repuestos Originales</h6>
+                                        <p class="small text-muted mb-0">Componentes OEM con garantía escrita de 1 año.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="d-flex align-items-start gap-3 p-3 rounded" style="background-color: var(--color-beige-claro); border: 1px solid var(--color-beige-oscuro);">
+                                    <i class="fa-solid fa-circle-check text-success fs-4 mt-1"></i>
+                                    <div>
+                                        <h6 class="fw-bold mb-1 text-dark">Trazabilidad Total</h6>
+                                        <p class="small text-muted mb-0">Consulta en línea cada fase de tu mantenimiento.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATÁLOGO DE SERVICIOS (4 servicios) -->
+        <section id="seccion-servicios" class="py-5">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h3 class="fw-bold text-dark">Nuestros Servicios de Mantenimiento</h3>
+                    <p class="text-muted">Servicios rápidos y de calidad para toda clase de automóviles.</p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card card-custom h-100 p-4 text-center">
+                            <i class="fa-solid fa-oil-can fa-2x mb-3" style="color: var(--color-cafe-medio);"></i>
+                            <h5 class="fw-bold">Cambio de Aceite y Filtros</h5>
+                            <p class="small text-muted flex-grow-1">Lubricantes de alta calidad, cambio de filtro de aceite y filtro de aire.</p>
+                            <a href="inscripciones.html" class="btn btn-cafe btn-sm">Solicitar Servicio</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card card-custom h-100 p-4 text-center">
+                            <i class="fa-solid fa-car fa-2x mb-3" style="color: var(--color-cafe-medio);"></i>
+                            <h5 class="fw-bold">Revisión y Cambio de Frenos</h5>
+                            <p class="small text-muted flex-grow-1">Revisión de zapatas, pastillas de freno, amortiguadores y terminales.</p>
+                            <a href="inscripciones.html" class="btn btn-cafe btn-sm">Solicitar Servicio</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card card-custom h-100 p-4 text-center">
+                            <i class="fa-solid fa-laptop-code fa-2x mb-3" style="color: var(--color-cafe-medio);"></i>
+                            <h5 class="fw-bold">Diagnóstico Computarizado</h5>
+                            <p class="small text-muted flex-grow-1">Diagnóstico completo OBD-II de testigos encendidos y sensores del motor.</p>
+                            <a href="inscripciones.html" class="btn btn-cafe btn-sm">Solicitar Servicio</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card card-custom h-100 p-4 text-center">
+                            <i class="fa-solid fa-rotate fa-2x mb-3" style="color: var(--color-cafe-medio);"></i>
+                            <h5 class="fw-bold">Alineación y Balanceo</h5>
+                            <p class="small text-muted flex-grow-1">Corrección de ángulos de dirección y balanceo de ruedas para mayor seguridad.</p>
+                            <a href="inscripciones.html" class="btn btn-cafe btn-sm">Solicitar Servicio</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-custom">
+        <div class="container text-center">
+            <p class="mb-1 text-white"><strong>AutoCat Taller</strong> - Mantenimiento y Servicio Automotriz</p>
+            <p class="small mb-0" style="color: var(--color-beige-oscuro);">Práctica AD01 - Programación Web 2 | Año 2026</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
+</body>
+</html>
