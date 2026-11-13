@@ -188,10 +188,6 @@ function registrarNuevoCliente(nombre, correo, clave, telefono, cedula) {
 
     usuarios.push(nuevoUsuario);
     guardarUsuarios(usuarios);
-
-    // [MODIFICACIÓN]: Se elimina la creación automática de solicitudes fantasma al registrarse.
-    // El usuario ahora se registra limpio y sin mantenimientos previos hasta que él mismo los solicite.
-
     return { exito: true, usuario: nuevoUsuario };
 }
 
@@ -389,6 +385,26 @@ function inicializarPaginaCuenta() {
         }
     }
 
+    // [AGREGADO]: Envoltorio y botón para ver contraseña en el input de login si existe
+    const inputClaveLogin = document.getElementById('loginClave');
+    if (inputClaveLogin && !document.getElementById('btn-toggle-login-pass')) {
+        const padre = inputClaveLogin.parentNode;
+        if (!padre.classList.contains('input-group')) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'input-group';
+            inputClaveLogin.parentNode.insertBefore(wrapper, inputClaveLogin);
+            wrapper.appendChild(inputClaveLogin);
+
+            const btnOjo = document.createElement('button');
+            btnOjo.className = 'btn btn-outline-secondary';
+            btnOjo.type = 'button';
+            btnOjo.id = 'btn-toggle-login-pass';
+            btnOjo.innerHTML = '<i class="fa-solid fa-eye" id="icono-ojo-login"></i>';
+            btnOjo.setAttribute('onclick', "toggleMostrarContrasena('loginClave', 'icono-ojo-login')");
+            wrapper.appendChild(btnOjo);
+        }
+    }
+
     if (sesion) {
         if (seccionLogin) {
             seccionLogin.style.cssText = "display: none !important;";
@@ -503,7 +519,12 @@ function abrirModalRegistroCliente() {
                 </div>
                 <div class="mb-2">
                     <label class="form-label fw-bold">Contraseña:</label>
-                    <input type="password" id="reg-clave" class="form-control" placeholder="Ej: 5678">
+                    <div class="input-group">
+                        <input type="password" id="reg-clave" class="form-control" placeholder="Ej: 5678">
+                        <button class="btn btn-outline-secondary" type="button" onclick="toggleMostrarContrasena('reg-clave', 'icono-ojo-reg')">
+                            <i class="fa-solid fa-eye" id="icono-ojo-reg"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="row g-2 mb-2">
                     <div class="col-6">
@@ -552,6 +573,21 @@ function abrirModalRegistroCliente() {
             });
         }
     });
+}
+
+// [AGREGADO]: Función auxiliar para alternar la visibilidad de la contraseña
+function toggleMostrarContrasena(idInput, idIcono) {
+    const input = document.getElementById(idInput);
+    const icono = document.getElementById(idIcono);
+    if (!input || !icono) return;
+
+    if (input.type === 'password') {
+        input.type = 'text';
+        icono.className = 'fa-solid fa-eye-slash';
+    } else {
+        input.type = 'password';
+        icono.className = 'fa-solid fa-eye';
+    }
 }
 
 function renderizarPerfilYMisSolicitudes(sesion) {
@@ -740,8 +776,8 @@ window.abrirEditarSolicitudAdminModal = function(id) {
                     </select>
                 </div>
                 <div class="mb-2">
-                    <label class="form-label fw-bold"><i class="fa-solid fa-message me-1"></i> Enviar Comentarios o Sugerencias al Cliente:</label>
-                    <textarea id="modal-admin-mensaje" class="form-control" rows="3" placeholder="Escribe aquí los comentarios o sugerencias para el cliente...">${item.observaciones || ''}</textarea>
+                    <label class="form-label fw-bold"><i class="fa-solid fa-message me-1"></i> Enviar Mensaje / Nota Técnica al Cliente:</label>
+                    <textarea id="modal-admin-mensaje" class="form-control" rows="3" placeholder="Escribe aquí el avance o mensaje para el cliente...">${item.observaciones || ''}</textarea>
                 </div>
             </div>
         `,
@@ -766,7 +802,7 @@ window.abrirEditarSolicitudAdminModal = function(id) {
             Swal.fire({
                 icon: 'success',
                 title: '¡Actualizado con éxito!',
-                text: 'El estado y los comentarios del taller han sido guardados.',
+                text: 'El estado y el mensaje del taller han sido guardados.',
                 confirmButtonColor: '#4a2c1a',
                 timer: 2000
             });
