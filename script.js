@@ -6,9 +6,9 @@
  */
 
 const STORAGE_KEYS = {
-    USUARIOS:   'autofix_usuarios_v29',
-    SOLICITUDES:'autofix_solicitudes_v29',
-    SESION:     'autofix_sesion_activa_v29'
+    USUARIOS:   'autofix_usuarios_v30',
+    SOLICITUDES:'autofix_solicitudes_v30',
+    SESION:     'autofix_sesion_activa_v30'
 };
 
 const USUARIOS_INICIALES = [
@@ -68,7 +68,7 @@ const SOLICITUDES_INICIALES = [
 ];
 
 function inicializarAlmacenamiento() {
-    for (let i = 1; i <= 28; i++) {
+    for (let i = 1; i <= 29; i++) {
         localStorage.removeItem(`autofix_usuarios_v${i}`);
         localStorage.removeItem(`autofix_solicitudes_v${i}`);
         localStorage.removeItem(`autofix_sesion_activa_v${i}`);
@@ -189,29 +189,8 @@ function registrarNuevoCliente(nombre, correo, clave, telefono, cedula) {
     usuarios.push(nuevoUsuario);
     guardarUsuarios(usuarios);
 
-    const solicitudes = obtenerSolicitudes();
-    const nuevaSolicitud = {
-        id: 'MNT-' + (101 + solicitudes.length),
-        clienteNombre: nombre.trim(),
-        clienteCorreo: email,
-        clienteTelefono: telefono || '0990000000',
-        clienteCedula: cedula || '1700000000',
-        placa: 'ABC-1234',
-        marca: 'Chevrolet',
-        modelo: 'Vehículo Nuevo',
-        anio: 2023,
-        kilometraje: 1000,
-        servicio: 'Mantenimiento Preventivo General',
-        modalidad: 'Taller Principal',
-        turnos: ['Matutino'],
-        fechaCita: new Date().toISOString().split('T')[0],
-        adicionales: [],
-        observaciones: 'Cliente registrado desde la web. Listo para asignación técnica.',
-        estado: 'Llevado al taller',
-        fechaRegistro: new Date().toLocaleDateString('es-EC')
-    };
-    solicitudes.push(nuevaSolicitud);
-    guardarSolicitudes(solicitudes);
+    // [MODIFICACIÓN]: Se elimina la creación automática de solicitudes fantasma al registrarse.
+    // El usuario ahora se registra limpio y sin mantenimientos previos hasta que él mismo los solicite.
 
     return { exito: true, usuario: nuevoUsuario };
 }
@@ -638,12 +617,37 @@ function renderizarPerfilYMisSolicitudes(sesion) {
                     <td>${Number(item.kilometraje).toLocaleString()} km</td>
                     <td><span class="badge bg-warning text-dark">${item.estado}</span></td>
                     <td class="text-center">
-                        <span class="badge bg-success">En Seguimiento</span>
+                        <button onclick="verComentariosCliente('${item.id}')" class="btn btn-sm btn-cafe">
+                            <i class="fa-solid fa-comments me-1"></i> Ver Comentarios
+                        </button>
                     </td>
                 </tr>
             `;
         });
     }
+}
+
+function verComentariosCliente(id) {
+    const solicitudes = obtenerSolicitudes();
+    const item = solicitudes.find(s => s.id === id);
+    if (!item) return;
+
+    Swal.fire({
+        title: `<i class="fa-solid fa-file-invoice text-warning me-2"></i> Seguimiento #${item.id}`,
+        html: `
+            <div class="text-start small p-3 rounded" style="background-color: var(--color-beige-claro); border: 1px solid var(--color-beige-oscuro);">
+                <p class="mb-1"><strong>Vehículo:</strong> ${item.marca} ${item.modelo} (${item.placa})</p>
+                <p class="mb-1"><strong>Servicio:</strong> ${item.servicio}</p>
+                <p class="mb-2"><strong>Estado actual:</strong> <span class="badge bg-warning text-dark">${item.estado}</span></p>
+                <div class="p-2 rounded bg-white border">
+                    <strong><i class="fa-solid fa-comment-dots text-warning me-1"></i> Comentarios / Sugerencias del Administrador:</strong>
+                    <p class="mb-0 text-muted fst-italic mt-1">${item.observaciones || 'Aún no hay comentarios del taller.'}</p>
+                </div>
+            </div>
+        `,
+        confirmButtonText: 'Cerrar',
+        confirmButtonColor: '#4a2c1a'
+    });
 }
 
 function inicializarPaginaAdmin() {
@@ -736,8 +740,8 @@ window.abrirEditarSolicitudAdminModal = function(id) {
                     </select>
                 </div>
                 <div class="mb-2">
-                    <label class="form-label fw-bold"><i class="fa-solid fa-message me-1"></i> Enviar Mensaje / Nota Técnica al Cliente:</label>
-                    <textarea id="modal-admin-mensaje" class="form-control" rows="3" placeholder="Escribe aquí el avance o mensaje para el cliente...">${item.observaciones || ''}</textarea>
+                    <label class="form-label fw-bold"><i class="fa-solid fa-message me-1"></i> Enviar Comentarios o Sugerencias al Cliente:</label>
+                    <textarea id="modal-admin-mensaje" class="form-control" rows="3" placeholder="Escribe aquí los comentarios o sugerencias para el cliente...">${item.observaciones || ''}</textarea>
                 </div>
             </div>
         `,
@@ -762,7 +766,7 @@ window.abrirEditarSolicitudAdminModal = function(id) {
             Swal.fire({
                 icon: 'success',
                 title: '¡Actualizado con éxito!',
-                text: 'El estado y el mensaje del taller han sido guardados.',
+                text: 'El estado y los comentarios del taller han sido guardados.',
                 confirmButtonColor: '#4a2c1a',
                 timer: 2000
             });
